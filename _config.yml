@@ -1,0 +1,17 @@
+title: 'healeyj.github.io'
+description: "A jekyll theme inspired by linux consoles for hackers, developers and script kiddies."
+baseurl: "/"
+url: "https://healeyj.github.io"
+
+header_pages:
+  - index.md
+  - portfolio.md
+
+style: dark
+
+footer: 'connect with me on <a href="https://www.linkedin.com/in/healey-joseph/">LinkedIn</a>'
+
+# Build settings
+markdown: kramdown
+remote_theme: b2a3e8/jekyll-theme-console
+theme: jekyll-theme-console

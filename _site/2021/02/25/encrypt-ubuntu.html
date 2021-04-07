@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; media-src 'self'; object-src 'self'; child-src 'self'; form-action 'none'; base-uri 'self'" />
+<meta http-equiv="X-XSS-Protection"  content="1;mode=block" always>
+<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Encrypt Ubuntu Across Two Disks (SSD and HDD)</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Encrypt Ubuntu Across Two Disks (SSD and HDD)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="INTRODUCTION" />
+<meta property="og:description" content="INTRODUCTION" />
+<link rel="canonical" href="http://localhost:4000/2021/02/25/encrypt-ubuntu.html" />
+<meta property="og:url" content="http://localhost:4000/2021/02/25/encrypt-ubuntu.html" />
+<meta property="og:site_name" content="healeyj.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-25T12:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Encrypt Ubuntu Across Two Disks (SSD and HDD)" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2021/02/25/encrypt-ubuntu.html","headline":"Encrypt Ubuntu Across Two Disks (SSD and HDD)","dateModified":"2021-02-25T12:00:00+00:00","datePublished":"2021-02-25T12:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/02/25/encrypt-ubuntu.html"},"description":"INTRODUCTION","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" type="text/css" href="/assets/main-dark.css"></head>
+<body>
+    <div class="container"><header>
+  <div class="menu">
+    <ul><li><a href="/">/home</a></li><li><a href="/portfolio">/portfolio</a></li></ul>
+  </div>
+</header>
+<main>
+      <h2 id="introduction">INTRODUCTION</h2>
+
+<p>In this tutorial, we’ll setup an encrypted install of Ubuntu 20.04 LTS on a small SSD (our primary drive). Then, We’ll make a second encrypted partition on a larger HDD (our secondary drive). Finally, we’ll link these two encrypted disks together with some command-line sorcery (block device mapping) and move our lovely <code class="highlighter-rouge">/home</code> folder to that secondary drive.</p>
+
+<h2 id="acknowledgements">ACKNOWLEDGEMENTS</h2>
+
+<p>This post is written mostly to testify that the following tutorial works perfectly on the latest version of Ubuntu LTS - 20.04 at the time of writing.</p>
+
+<p><a href="https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/">Ubuntu – How to install 18.04 using full disk encryption with two drives (SSD/HDD)</a>.</p>
+
+<p>I initially followed the above tutorial and completed it with Ubuntu 18.04 LTS Bionic Beaver. Still, I wondered, “maybe this’ll work with Ubuntu 20.04 LTS Focal Fossa. Why not give it a shot?” I did, and again, it works flawlessly with the latest version of Ubuntu.</p>
+
+<p>I’ll try to compress some parts of the <a href="https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/">iTecTec tutorial</a> and expand upon others.</p>
+
+<hr />
+<h2 id="overview">OVERVIEW</h2>
+
+<h3 id="concepts">concepts</h3>
+
+<p>A basic understanding of the following concepts will help but I’ll do my best to explain some of the more difficult ones as we go along.</p>
+
+<ul>
+  <li>drives</li>
+  <li>partitions</li>
+  <li>pathing</li>
+  <li>mounting</li>
+  <li>file systems</li>
+  <li>block devices</li>
+  <li>encryption</li>
+  <li>keyfiles</li>
+</ul>
+
+<h3 id="command-line-toolbox">command-line toolbox</h3>
+
+<p>This is where the magic happens. If you’re familiar with these tools already, you can complete this whole process in less than an hour.</p>
+
+<ul>
+  <li>Ubuntu default Disk application (gparted is OK too)</li>
+  <li>sudo</li>
+  <li>cryptsetup</li>
+  <li>mkfs</li>
+  <li>dd</li>
+  <li>chmod</li>
+  <li>a text editor (nano, vim, or a GUI)</li>
+  <li>blkid</li>
+  <li>mkdir</li>
+  <li>mount</li>
+  <li>rsync</li>
+</ul>
+
+<hr />
+<h2 id="part-i">PART I</h2>
+<h3 id="install-ubuntu-2004-lts-on-the-primary-drive-and-then-encrypt-a-partition-on-the-secondary-drive">Install Ubuntu 20.04 LTS on the primary drive and then encrypt a partition on the secondary drive</h3>
+
+<p>First and foremost, do a fresh install of Ubuntu 20.04 LTS on the SSD (primary drive). To quickly create a USB installer, refer to my <a href="https://healeyj.tumblr.com/post/644106042886799360/make-a-bootable-usb-with-dd-terminal-command">previous tutorial</a>.</p>
+
+<p>In the installation wizard, we must check the boxes “Encrypt the new Ubuntu installation for security” and “Use LVM (Logical Volume Management) with the new Ubuntu installation”.</p>
+
+<p>The installer will prompt us to create a secuirty key. This is a password that we will use to unlock our SSD everytime we boot into Ubuntu. It is <em>distinct</em> and preferably different from our user account password.</p>
+
+<hr />
+
+<p>Secondly, use <code class="highlighter-rouge">cryptsetup</code> to setup a partition on the secondary drive as an encrypted <a href="https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup">LUKS</a> (Linux Unified Key Setup) partition. The <a href="https://reposcope.com/package/cryptsetup">cryptsetup</a> package is installed by default in most popular Linux distros.</p>
+
+<p>Replace <code class="highlighter-rouge">?X</code> with the appropriate identifiers of the target partition. The letter that replaces “?” refers to the drive and the number that replaces “X” refers to the partition on that drive.</p>
+
+<p>You’ll need to set a new password for this LUKS partition. Again, this is distinct from both your user account password and your primary drive password.</p>
+
+<p>For recap, we’ve now set up three (3) distinct passwords, one for the encrypted primary drive, one for your user account, and one for the LUKS-encrypted partition on the secondary drive.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>cryptsetup <span class="nt">-y</span> <span class="nt">-v</span> luksFormat /dev/sd?X<span class="sb">`</span></code></pre></figure>
+
+<hr />
+
+<p>Next, we’ll use <code class="highlighter-rouge">cryptsetup</code> again. <code class="highlighter-rouge">luksOpen</code> will decrypt the secondary drive you just created.</p>
+
+<p>The <code class="highlighter-rouge">mkfs</code> (make file system) command run with the <code class="highlighter-rouge">.ext4</code> (fourth extended filesytem) parameter will format the <em>unencrypted</em> LUKS partition as ext4. Essentially ext4 is a Linux compatible filesystem, like <a href="https://en.wikipedia.org/wiki/NTFS">NTFS</a> is for Windows or <a href="https://en.wikipedia.org/wiki/Apple_File_System">APFS</a> is for macOS. By wrapping our ext4 filesystem with that LUKS partition, we ensure that our filesystem and <em>all</em> of its data will be encrypted.</p>
+
+<p>Note that <code class="highlighter-rouge">cryptsetup</code> is an interface to mount this encrypted partition with a mapper, which is essentially a symbolic link. The Wikipedia article for <a href="https://en.wikipedia.org/wiki/Device_mapper">Device Mapper</a> explains that it “works by passing data from a virtual block device… to another block device. Data can be also modified in transition, which is performed, for example, in the case of device mapper providing disk encryption”.</p>
+
+<p>Briefly, the mapper affords us the luxury of encryption.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">```</span>
+<span class="nb">sudo </span>cryptsetup luksOpen /dev/sd?X sd?X_crypt
+<span class="nb">sudo </span>mkfs.ext4 /dev/mapper/sd?X_crypt
+<span class="sb">```</span></code></pre></figure>
+
+<hr />
+
+<p>Next, we will create a keyfile that will serve as our personal key to unlock that encrypted LUKS parition. We’ll store the key on the primary partition and set it up so that when we login, the keyfile will automatically unencrypt that secondary drive.</p>
+
+<p>We’ll use <code class="highlighter-rouge">dd</code> to pull noise from our system’s random number generator, <a href="https://en.wikipedia.org/wiki//dev/random"><code class="highlighter-rouge">/dev/urandom</code></a> and make a pseudo-random and strong password at <code class="highlighter-rouge">/root/.keyfile</code>.</p>
+
+<p>With <code class="highlighter-rouge">chmod</code>, we’ll give our user account (read-access)[https://chmodcommand.com/chmod-0400/] to the keyfile.</p>
+
+<p>Then coming back to the wonderful <code class="highlighter-rouge">cryptsetup</code>, we’ll use <code class="highlighter-rouge">luksAddKey</code> to link our keyfile to that encrypted secondary partition.</p>
+
+<p>Note that this keyfile is distinct from the three (3) passwords we are working with.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">```</span>
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>/root/.keyfile <span class="nv">bs</span><span class="o">=</span>1024 <span class="nv">count</span><span class="o">=</span>4
+<span class="nb">sudo chmod </span>0400 /root/.keyfile
+<span class="nb">sudo </span>cryptsetup luksAddKey /dev/sd?X /root/.keyfile
+<span class="sb">```</span></code></pre></figure>
+
+<hr />
+
+<p>Run <code class="highlighter-rouge">blkid</code> and copy the <code class="highlighter-rouge">UUID</code> of the <code class="highlighter-rouge">sd?X</code> filesystem. Note that this is different from the already decrypted <code class="highlighter-rouge">sd?X_crypt</code>. Nor do we want the <code class="highlighter-rouge">PARTUUID</code>.</p>
+
+<p>What does <code class="highlighter-rouge">blkid</code> mean though? A quick Stack Exchange search shows (“Block (device) identification”)[https://unix.stackexchange.com/questions/212866/what-does-blkid-stand-for]. From Wikipedia, <a href="https://en.wikipedia.org/wiki/Device_file#Block_devices">“block devices provide buffered access to hardware devices, and provide some abstraction from their specifics”</a>. UUID means “Universal Unique Identifier”, it allows use to uniquely identify the parition we’re working with.</p>
+
+<p>Essentially, block devices make it easy for users like us to work with filesystems and do fun stuff like encrypt them and link them across drives.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>blkid<span class="sb">`</span></code></pre></figure>
+
+<hr />
+
+<p>With our target UUID copied to the clipboard, open up <code class="highlighter-rouge">/etc/crypttab</code> with a text editor of choice. Nano, vim, emacs, or a GUI text editor will work.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>nano /etc/crypttab<span class="sb">`</span></code></pre></figure>
+
+<p>Copy and paste the following line to the last line of the text file:</p>
+
+<p><code class="highlighter-rouge">sd?X_crypt UUID=&lt;device uuid&gt; /root/.keyfile luks,discard</code></p>
+
+<p>Note that we are taking the UUID of <code class="highlighter-rouge">sd?X</code> from <code class="highlighter-rouge">blkid</code>, linking it to the keyfile that we’ve set up to unlock it, and telling our system to reference it as <code class="highlighter-rouge">sd?X_crypt</code>.</p>
+
+<hr />
+
+<p>All done! We’ve successfully linked partitions across our SSD and HDD, and both should automatically unlock upon login. Test this by restarting and then moving some files back and forth between the two drives.</p>
+
+<p>To wrap up, let’s move the <code class="highlighter-rouge">/home</code> folder to our secondary drive (HDD) to reserve space on our primary drive (SSD) for the operating system we installed.</p>
+
+<hr />
+<h2 id="part-ii">PART II</h2>
+<h3 id="part-ii-move-the-home-folder-to-the-secondary-drive">Part II: Move the /home folder to the secondary drive</h3>
+
+<p>First, create a new temporary directory at <code class="highlighter-rouge">/mnt/tmp</code>, then mount <code class="highlighter-rouge">/dev/mapper/sd?X_crypt</code> to it.</p>
+
+<p>If there’s ever doubt as to what a certain command does, use <code class="highlighter-rouge">whatis</code> (thanks again to <a href="https://unix.stackexchange.com/questions/212866/what-does-blkid-stand-for">that stackexchange post on blkid</a>) For example, try running <code class="highlighter-rouge">whatis mkdir</code> in the terminal.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">```</span>
+<span class="nb">sudo mkdir</span> /mnt/tmp
+<span class="nb">sudo </span>mount /dev/mapper/sd?X_crypt /mnt/tmp
+<span class="sb">```</span></code></pre></figure>
+
+<hr />
+
+<p>Next, we’ll use <code class="highlighter-rouge">rsync</code> to copy our <code class="highlighter-rouge">/home</code> folder and all its contents to our new temporary mount point on the second drive.</p>
+
+<p>The <code class="highlighter-rouge">rsync</code> command is an improvement on <code class="highlighter-rouge">rcp</code>, remote copy, which functions about the same as <code class="highlighter-rouge">cp</code>, which simply copies. We need a <em>remote</em> copy command because we’re working across drives.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>rsync <span class="nt">-avx</span> /home/ /mnt/tmp<span class="sb">`</span></code></pre></figure>
+
+<hr />
+
+<p>Let’s mount our <code class="highlighter-rouge">/home</code> folder onto our unlocked secondary partition.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>mount /dev/mapper/sd?X_crypt /home<span class="sb">`</span></code></pre></figure>
+
+<hr />
+
+<p>Almost done.</p>
+
+<p>Open up <code class="highlighter-rouge">/etc/fstab</code> with a text editor:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span><span class="nb">sudo </span>nano /etc/fstab<span class="sb">`</span></code></pre></figure>
+
+<p>Now copy and paste the following line to the end of the text file:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">`</span>/dev/mapper/sd?X_crypt /home ext4 defaults 0 2<span class="sb">`</span></code></pre></figure>
+
+<p>What is <code class="highlighter-rouge">fstab</code>?</p>
+
+<p>It’s an important system file that stores “static information about the filesystems” (from <code class="highlighter-rouge">whatis fstab</code>). The Wikipedia entry on <a href="https://en.wikipedia.org/wiki/Fstab">fstab</a> says that the <code class="highlighter-rouge">mount</code> command relies on it to function. This is logical since filesystems exist to keep our files organized, and <code class="highlighter-rouge">mount</code> helps us access devices outside our primary filesystem.</p>
+
+<p>By permenantly writing our secondary partition and <code class="highlighter-rouge">/home</code> folder paths to fstab, we ensure that our operating system will recognize that partition as the new <em>home</em> of our <code class="highlighter-rouge">/home</code> folder.</p>
+
+<hr />
+
+<h2 id="conclusion">CONCLUSION</h2>
+
+<p>If you’ve made it this far, pop a bottle of champagne.</p>
+
+<p>First, we did an encrypted install of Ubuntu 20.04 LTS on our primary drive. We then set up an encrypted LUKS partition on a secondary drive tied to a randomly-generated keyfile that triggers on login. Finally, we used some black magic (block device mapping) to permenantly move our home folder onto it.</p>
+
+<p>Since we’re running the latest version of Ubuntu LTS, we’ll enjoy <a href="https://ubuntu.com/about/release-cycle">public security maintenance into 2024, and Extended Security Maintenance until 2030</a>.</p>
+
+<p>Big thanks again to iTecTec for the <a href="https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/">original tutorial</a>.</p>
+
+
+    </main><footer>
+  connect with me on <a href="https://www.linkedin.com/in/healey-joseph/">LinkedIn</a>
+</footer>
+</div>
+  </body>
+</html>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-03T02:44:40+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">healeyj.github.io</title><subtitle>A jekyll theme inspired by linux consoles for hackers, developers and script kiddies.</subtitle><entry><title type="html">Enable exFAT on macOS 11.2 and Ubuntu 20.04</title><link href="http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html" rel="alternate" type="text/html" title="Enable exFAT on macOS 11.2 and Ubuntu 20.04" /><published>2021-03-06T12:00:00+00:00</published><updated>2021-03-06T12:00:00+00:00</updated><id>http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20</id><content type="html" xml:base="http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html">&lt;h1 id=&quot;enable-exfat-on-macos-112-and-ubuntu-2004&quot;&gt;Enable exFAT on macOS 11.2 and Ubuntu 20.04&lt;/h1&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial we will set up enable exFAT compatibility on macOS 11.2 and Ubuntu 20.04.&lt;/p&gt;
+
+&lt;p&gt;There are 2 advantages of the &lt;a href=&quot;https://en.wikipedia.org/wiki/ExFAT&quot;&gt;exFAT&lt;/a&gt; (Extensible File Allocation Table) filesystem: (1) it allows storage of files greater than four gigabytes, and (2) it is compatible across Windows, macOS, and Linux. If you want to move large files to and from all of these operating systems, exFAT is a solution.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, neither macOS 11.2 nor Ubuntu 20.04 include exFAT compatibility by default. We will install the necessary tools manually.&lt;/p&gt;
+
+&lt;p&gt;Note: Windows 10 supports exFAT by default, probably because Microsoft created the filesystem.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;macos-112---enable-exfat-compatibility&quot;&gt;macOS 11.2 - enable exFAT compatibility&lt;/h2&gt;
+
+&lt;p&gt;We’ll use &lt;a href=&quot;https://osxfuse.github.io/&quot;&gt;osx-fuse&lt;/a&gt; to enable exFAT compatibility with macOS Big Sur.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;brew update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;brew upgrade
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;osx-fuse
+&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To finish the installation, you will need to restart your computer.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;ubuntu-2004---enable-exfat-compatibility&quot;&gt;Ubuntu 20.04 - enable exFAT compatibility&lt;/h2&gt;
+
+&lt;p&gt;We’ll use exfat-utils to enable exFAT compatibility in Ubuntu Focal Fossa.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt upgrade
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;exfat-utils
+&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;That’s it. We set up &lt;code class=&quot;highlighter-rouge&quot;&gt;osx-fuse&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;exfat-utils&lt;/code&gt; on macOS and Ubuntu respectively. Now we can create exFAT filesystems that will accomodate large files across operating systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;sources--additional-reading&quot;&gt;Sources / Additional Reading&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://tech.saigonist.com/b/osx/using-exfat-mac-osx.html&quot;&gt;Using exFAT on OSX&lt;/a&gt; by Tomo Saigon, 2016&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://linuxhint.com/exfat_compatibility_ubuntu/&quot;&gt;exFAT Compatibility in Ubuntu&lt;/a&gt; by Ranvir Singh, 2019&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://itsfoss.com/format-exfat-linux/&quot;&gt;How to Format a USB Disk as exFAT on Linux&lt;/a&gt; by Dimitrios, 2020&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Enable exFAT on macOS 11.2 and Ubuntu 20.04</summary></entry><entry><title type="html">Delete hidden EFI partitions with macOS 11.2 diskutil</title><link href="http://localhost:4000/2021/03/06/delete-hidden-efi-diskutil.html" rel="alternate" type="text/html" title="Delete hidden EFI partitions with macOS 11.2 diskutil" /><published>2021-03-06T11:00:00+00:00</published><updated>2021-03-06T11:00:00+00:00</updated><id>http://localhost:4000/2021/03/06/delete-hidden-efi-diskutil</id><content type="html" xml:base="http://localhost:4000/2021/03/06/delete-hidden-efi-diskutil.html">&lt;h1 id=&quot;delete-hidden-efi-partitions-with-macos-112-diskutil&quot;&gt;Delete hidden EFI partitions with macOS 11.2 diskutil&lt;/h1&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The Disk Utility GUI application included with macOS 11 hides some EFI partitions to protect users from damaging certain disks.&lt;/p&gt;
+
+&lt;p&gt;Let’s use &lt;code class=&quot;highlighter-rouge&quot;&gt;diskutil&lt;/code&gt; to find and delete an EFI partition that is hidden from view in the Disk Utility GUI application.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;identify-the-partition&quot;&gt;Identify the partition&lt;/h2&gt;
+
+&lt;p&gt;Find the identifier of the EFI parition you need to delete by running the following command.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;diskutil list&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;delete-the-partition&quot;&gt;Delete the partition&lt;/h2&gt;
+
+&lt;p&gt;Once you have identified the EFI parition that you need to delete, run the following command. Be sure to replace “X” and “Y” in “diskXsY” with your target disk number and partition number, respectively.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;diskutil eraseVolume FREE UNTITLED diskXsY&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;That’s it! We deleted an EFI partition from a disk with the &lt;code class=&quot;highlighter-rouge&quot;&gt;diskutil&lt;/code&gt; tool.&lt;/p&gt;
+
+&lt;p&gt;Bonus: Remember, &lt;code class=&quot;highlighter-rouge&quot;&gt;man&lt;/code&gt; is your friend. Use “j” and “k” to scroll up and down one line at a time with &lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt; (the text file viewer used with &lt;code class=&quot;highlighter-rouge&quot;&gt;man&lt;/code&gt;). Additionally, you can use control + f and control + b to scroll down and up one page at a time.&lt;/p&gt;</content><author><name></name></author><summary type="html">Delete hidden EFI partitions with macOS 11.2 diskutil</summary></entry><entry><title type="html">Encrypt Ubuntu Across Two Disks (SSD and HDD)</title><link href="http://localhost:4000/2021/02/25/encrypt-ubuntu.html" rel="alternate" type="text/html" title="Encrypt Ubuntu Across Two Disks (SSD and HDD)" /><published>2021-02-25T12:00:00+00:00</published><updated>2021-02-25T12:00:00+00:00</updated><id>http://localhost:4000/2021/02/25/encrypt-ubuntu</id><content type="html" xml:base="http://localhost:4000/2021/02/25/encrypt-ubuntu.html">&lt;h2 id=&quot;introduction&quot;&gt;INTRODUCTION&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial, we’ll setup an encrypted install of Ubuntu 20.04 LTS on a small SSD (our primary drive). Then, We’ll make a second encrypted partition on a larger HDD (our secondary drive). Finally, we’ll link these two encrypted disks together with some command-line sorcery (block device mapping) and move our lovely &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder to that secondary drive.&lt;/p&gt;
+
+&lt;h2 id=&quot;acknowledgements&quot;&gt;ACKNOWLEDGEMENTS&lt;/h2&gt;
+
+&lt;p&gt;This post is written mostly to testify that the following tutorial works perfectly on the latest version of Ubuntu LTS - 20.04 at the time of writing.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/&quot;&gt;Ubuntu – How to install 18.04 using full disk encryption with two drives (SSD/HDD)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I initially followed the above tutorial and completed it with Ubuntu 18.04 LTS Bionic Beaver. Still, I wondered, “maybe this’ll work with Ubuntu 20.04 LTS Focal Fossa. Why not give it a shot?” I did, and again, it works flawlessly with the latest version of Ubuntu.&lt;/p&gt;
+
+&lt;p&gt;I’ll try to compress some parts of the &lt;a href=&quot;https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/&quot;&gt;iTecTec tutorial&lt;/a&gt; and expand upon others.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;overview&quot;&gt;OVERVIEW&lt;/h2&gt;
+
+&lt;h3 id=&quot;concepts&quot;&gt;concepts&lt;/h3&gt;
+
+&lt;p&gt;A basic understanding of the following concepts will help but I’ll do my best to explain some of the more difficult ones as we go along.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;drives&lt;/li&gt;
+  &lt;li&gt;partitions&lt;/li&gt;
+  &lt;li&gt;pathing&lt;/li&gt;
+  &lt;li&gt;mounting&lt;/li&gt;
+  &lt;li&gt;file systems&lt;/li&gt;
+  &lt;li&gt;block devices&lt;/li&gt;
+  &lt;li&gt;encryption&lt;/li&gt;
+  &lt;li&gt;keyfiles&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;command-line-toolbox&quot;&gt;command-line toolbox&lt;/h3&gt;
+
+&lt;p&gt;This is where the magic happens. If you’re familiar with these tools already, you can complete this whole process in less than an hour.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ubuntu default Disk application (gparted is OK too)&lt;/li&gt;
+  &lt;li&gt;sudo&lt;/li&gt;
+  &lt;li&gt;cryptsetup&lt;/li&gt;
+  &lt;li&gt;mkfs&lt;/li&gt;
+  &lt;li&gt;dd&lt;/li&gt;
+  &lt;li&gt;chmod&lt;/li&gt;
+  &lt;li&gt;a text editor (nano, vim, or a GUI)&lt;/li&gt;
+  &lt;li&gt;blkid&lt;/li&gt;
+  &lt;li&gt;mkdir&lt;/li&gt;
+  &lt;li&gt;mount&lt;/li&gt;
+  &lt;li&gt;rsync&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;part-i&quot;&gt;PART I&lt;/h2&gt;
+&lt;h3 id=&quot;install-ubuntu-2004-lts-on-the-primary-drive-and-then-encrypt-a-partition-on-the-secondary-drive&quot;&gt;Install Ubuntu 20.04 LTS on the primary drive and then encrypt a partition on the secondary drive&lt;/h3&gt;
+
+&lt;p&gt;First and foremost, do a fresh install of Ubuntu 20.04 LTS on the SSD (primary drive). To quickly create a USB installer, refer to my &lt;a href=&quot;https://healeyj.tumblr.com/post/644106042886799360/make-a-bootable-usb-with-dd-terminal-command&quot;&gt;previous tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the installation wizard, we must check the boxes “Encrypt the new Ubuntu installation for security” and “Use LVM (Logical Volume Management) with the new Ubuntu installation”.&lt;/p&gt;
+
+&lt;p&gt;The installer will prompt us to create a secuirty key. This is a password that we will use to unlock our SSD everytime we boot into Ubuntu. It is &lt;em&gt;distinct&lt;/em&gt; and preferably different from our user account password.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Secondly, use &lt;code class=&quot;highlighter-rouge&quot;&gt;cryptsetup&lt;/code&gt; to setup a partition on the secondary drive as an encrypted &lt;a href=&quot;https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup&quot;&gt;LUKS&lt;/a&gt; (Linux Unified Key Setup) partition. The &lt;a href=&quot;https://reposcope.com/package/cryptsetup&quot;&gt;cryptsetup&lt;/a&gt; package is installed by default in most popular Linux distros.&lt;/p&gt;
+
+&lt;p&gt;Replace &lt;code class=&quot;highlighter-rouge&quot;&gt;?X&lt;/code&gt; with the appropriate identifiers of the target partition. The letter that replaces “?” refers to the drive and the number that replaces “X” refers to the partition on that drive.&lt;/p&gt;
+
+&lt;p&gt;You’ll need to set a new password for this LUKS partition. Again, this is distinct from both your user account password and your primary drive password.&lt;/p&gt;
+
+&lt;p&gt;For recap, we’ve now set up three (3) distinct passwords, one for the encrypted primary drive, one for your user account, and one for the LUKS-encrypted partition on the secondary drive.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;cryptsetup &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; luksFormat /dev/sd?X&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, we’ll use &lt;code class=&quot;highlighter-rouge&quot;&gt;cryptsetup&lt;/code&gt; again. &lt;code class=&quot;highlighter-rouge&quot;&gt;luksOpen&lt;/code&gt; will decrypt the secondary drive you just created.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;mkfs&lt;/code&gt; (make file system) command run with the &lt;code class=&quot;highlighter-rouge&quot;&gt;.ext4&lt;/code&gt; (fourth extended filesytem) parameter will format the &lt;em&gt;unencrypted&lt;/em&gt; LUKS partition as ext4. Essentially ext4 is a Linux compatible filesystem, like &lt;a href=&quot;https://en.wikipedia.org/wiki/NTFS&quot;&gt;NTFS&lt;/a&gt; is for Windows or &lt;a href=&quot;https://en.wikipedia.org/wiki/Apple_File_System&quot;&gt;APFS&lt;/a&gt; is for macOS. By wrapping our ext4 filesystem with that LUKS partition, we ensure that our filesystem and &lt;em&gt;all&lt;/em&gt; of its data will be encrypted.&lt;/p&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;cryptsetup&lt;/code&gt; is an interface to mount this encrypted partition with a mapper, which is essentially a symbolic link. The Wikipedia article for &lt;a href=&quot;https://en.wikipedia.org/wiki/Device_mapper&quot;&gt;Device Mapper&lt;/a&gt; explains that it “works by passing data from a virtual block device… to another block device. Data can be also modified in transition, which is performed, for example, in the case of device mapper providing disk encryption”.&lt;/p&gt;
+
+&lt;p&gt;Briefly, the mapper affords us the luxury of encryption.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;cryptsetup luksOpen /dev/sd?X sd?X_crypt
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkfs.ext4 /dev/mapper/sd?X_crypt
+&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, we will create a keyfile that will serve as our personal key to unlock that encrypted LUKS parition. We’ll store the key on the primary partition and set it up so that when we login, the keyfile will automatically unencrypt that secondary drive.&lt;/p&gt;
+
+&lt;p&gt;We’ll use &lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt; to pull noise from our system’s random number generator, &lt;a href=&quot;https://en.wikipedia.org/wiki//dev/random&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;&lt;/a&gt; and make a pseudo-random and strong password at &lt;code class=&quot;highlighter-rouge&quot;&gt;/root/.keyfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;With &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod&lt;/code&gt;, we’ll give our user account (read-access)[https://chmodcommand.com/chmod-0400/] to the keyfile.&lt;/p&gt;
+
+&lt;p&gt;Then coming back to the wonderful &lt;code class=&quot;highlighter-rouge&quot;&gt;cryptsetup&lt;/code&gt;, we’ll use &lt;code class=&quot;highlighter-rouge&quot;&gt;luksAddKey&lt;/code&gt; to link our keyfile to that encrypted secondary partition.&lt;/p&gt;
+
+&lt;p&gt;Note that this keyfile is distinct from the three (3) passwords we are working with.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/urandom &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/root/.keyfile &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1024 &lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4
+&lt;span class=&quot;nb&quot;&gt;sudo chmod &lt;/span&gt;0400 /root/.keyfile
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;cryptsetup luksAddKey /dev/sd?X /root/.keyfile
+&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;blkid&lt;/code&gt; and copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;UUID&lt;/code&gt; of the &lt;code class=&quot;highlighter-rouge&quot;&gt;sd?X&lt;/code&gt; filesystem. Note that this is different from the already decrypted &lt;code class=&quot;highlighter-rouge&quot;&gt;sd?X_crypt&lt;/code&gt;. Nor do we want the &lt;code class=&quot;highlighter-rouge&quot;&gt;PARTUUID&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;What does &lt;code class=&quot;highlighter-rouge&quot;&gt;blkid&lt;/code&gt; mean though? A quick Stack Exchange search shows (“Block (device) identification”)[https://unix.stackexchange.com/questions/212866/what-does-blkid-stand-for]. From Wikipedia, &lt;a href=&quot;https://en.wikipedia.org/wiki/Device_file#Block_devices&quot;&gt;“block devices provide buffered access to hardware devices, and provide some abstraction from their specifics”&lt;/a&gt;. UUID means “Universal Unique Identifier”, it allows use to uniquely identify the parition we’re working with.&lt;/p&gt;
+
+&lt;p&gt;Essentially, block devices make it easy for users like us to work with filesystems and do fun stuff like encrypt them and link them across drives.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;blkid&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;With our target UUID copied to the clipboard, open up &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/crypttab&lt;/code&gt; with a text editor of choice. Nano, vim, emacs, or a GUI text editor will work.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/crypttab&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Copy and paste the following line to the last line of the text file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sd?X_crypt UUID=&amp;lt;device uuid&amp;gt; /root/.keyfile luks,discard&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that we are taking the UUID of &lt;code class=&quot;highlighter-rouge&quot;&gt;sd?X&lt;/code&gt; from &lt;code class=&quot;highlighter-rouge&quot;&gt;blkid&lt;/code&gt;, linking it to the keyfile that we’ve set up to unlock it, and telling our system to reference it as &lt;code class=&quot;highlighter-rouge&quot;&gt;sd?X_crypt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;All done! We’ve successfully linked partitions across our SSD and HDD, and both should automatically unlock upon login. Test this by restarting and then moving some files back and forth between the two drives.&lt;/p&gt;
+
+&lt;p&gt;To wrap up, let’s move the &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder to our secondary drive (HDD) to reserve space on our primary drive (SSD) for the operating system we installed.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h2 id=&quot;part-ii&quot;&gt;PART II&lt;/h2&gt;
+&lt;h3 id=&quot;part-ii-move-the-home-folder-to-the-secondary-drive&quot;&gt;Part II: Move the /home folder to the secondary drive&lt;/h3&gt;
+
+&lt;p&gt;First, create a new temporary directory at &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/tmp&lt;/code&gt;, then mount &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/mapper/sd?X_crypt&lt;/code&gt; to it.&lt;/p&gt;
+
+&lt;p&gt;If there’s ever doubt as to what a certain command does, use &lt;code class=&quot;highlighter-rouge&quot;&gt;whatis&lt;/code&gt; (thanks again to &lt;a href=&quot;https://unix.stackexchange.com/questions/212866/what-does-blkid-stand-for&quot;&gt;that stackexchange post on blkid&lt;/a&gt;) For example, try running &lt;code class=&quot;highlighter-rouge&quot;&gt;whatis mkdir&lt;/code&gt; in the terminal.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /mnt/tmp
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/mapper/sd?X_crypt /mnt/tmp
+&lt;span class=&quot;sb&quot;&gt;```&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Next, we’ll use &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; to copy our &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder and all its contents to our new temporary mount point on the second drive.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; command is an improvement on &lt;code class=&quot;highlighter-rouge&quot;&gt;rcp&lt;/code&gt;, remote copy, which functions about the same as &lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;, which simply copies. We need a &lt;em&gt;remote&lt;/em&gt; copy command because we’re working across drives.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;rsync &lt;span class=&quot;nt&quot;&gt;-avx&lt;/span&gt; /home/ /mnt/tmp&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let’s mount our &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder onto our unlocked secondary partition.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/mapper/sd?X_crypt /home&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Almost done.&lt;/p&gt;
+
+&lt;p&gt;Open up &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/fstab&lt;/code&gt; with a text editor:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/fstab&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now copy and paste the following line to the end of the text file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;/dev/mapper/sd?X_crypt /home ext4 defaults 0 2&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;What is &lt;code class=&quot;highlighter-rouge&quot;&gt;fstab&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;It’s an important system file that stores “static information about the filesystems” (from &lt;code class=&quot;highlighter-rouge&quot;&gt;whatis fstab&lt;/code&gt;). The Wikipedia entry on &lt;a href=&quot;https://en.wikipedia.org/wiki/Fstab&quot;&gt;fstab&lt;/a&gt; says that the &lt;code class=&quot;highlighter-rouge&quot;&gt;mount&lt;/code&gt; command relies on it to function. This is logical since filesystems exist to keep our files organized, and &lt;code class=&quot;highlighter-rouge&quot;&gt;mount&lt;/code&gt; helps us access devices outside our primary filesystem.&lt;/p&gt;
+
+&lt;p&gt;By permenantly writing our secondary partition and &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder paths to fstab, we ensure that our operating system will recognize that partition as the new &lt;em&gt;home&lt;/em&gt; of our &lt;code class=&quot;highlighter-rouge&quot;&gt;/home&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;CONCLUSION&lt;/h2&gt;
+
+&lt;p&gt;If you’ve made it this far, pop a bottle of champagne.&lt;/p&gt;
+
+&lt;p&gt;First, we did an encrypted install of Ubuntu 20.04 LTS on our primary drive. We then set up an encrypted LUKS partition on a secondary drive tied to a randomly-generated keyfile that triggers on login. Finally, we used some black magic (block device mapping) to permenantly move our home folder onto it.&lt;/p&gt;
+
+&lt;p&gt;Since we’re running the latest version of Ubuntu LTS, we’ll enjoy &lt;a href=&quot;https://ubuntu.com/about/release-cycle&quot;&gt;public security maintenance into 2024, and Extended Security Maintenance until 2030&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Big thanks again to iTecTec for the &lt;a href=&quot;https://itectec.com/ubuntu/ubuntu-how-to-install-18-04-using-full-disk-encryption-with-two-drives-ssd-hdd/&quot;&gt;original tutorial&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">INTRODUCTION</summary></entry><entry><title type="html">Make a bootable USB with dd on Linux and macOS</title><link href="http://localhost:4000/2021/02/25/bootable-usb-with-dd.html" rel="alternate" type="text/html" title="Make a bootable USB with dd on Linux and macOS" /><published>2021-02-25T11:00:00+00:00</published><updated>2021-02-25T11:00:00+00:00</updated><id>http://localhost:4000/2021/02/25/bootable-usb-with-dd</id><content type="html" xml:base="http://localhost:4000/2021/02/25/bootable-usb-with-dd.html">&lt;h1 id=&quot;make-a-bootable-usb-with-dd-on-linux-and-macos&quot;&gt;Make a bootable USB with dd on Linux and macOS&lt;/h1&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;INTRODUCTION&lt;/h2&gt;
+
+&lt;p&gt;you’ve probably used &lt;a href=&quot;https://href.li/?https://unetbootin.org&quot;&gt;uNetBootin&lt;/a&gt; and &lt;a href=&quot;https://href.li/?https://www.balena.io/etcher/&quot;&gt;Etcher&lt;/a&gt; a dozen times to make a bootable usb drive.&lt;/p&gt;
+
+&lt;p&gt;your grandma loves those apps. they do all the work for you. but they’re boring and you live dangerously.&lt;/p&gt;
+
+&lt;p&gt;enter the terminal. what could possibly go wrong? well, total corruption of the usb stick and/or your computer’s operating system. don’t worry though, a little caution goes a long way.&lt;/p&gt;
+
+&lt;p&gt;credit where it’s due: this post is an expansion of &lt;a href=&quot;https://href.li/?https://askubuntu.com/questions/372607/how-to-create-bootable-ubuntu-usb-flash-drive-from-terminal&quot;&gt;this askubuntu thread&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;i’ll explain step-by-step how the dd terminal command referenced in the link above works. if you’re on macOS there is a small variation that i will reiterate. note that this won’t work on windows.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;make-a-bootable-usb-in-the-terminal-with-dd&quot;&gt;make a bootable usb in the terminal with dd&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;path/to/input.iso &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sd &lt;span class=&quot;nv&quot;&gt;conv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;fdatasync &lt;span class=&quot;nv&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;progress&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;to run this commmand, you would replace &lt;code class=&quot;highlighter-rouge&quot;&gt;path/to/input.iso&lt;/code&gt; with the path to your linux .iso, and &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sd&amp;gt;&lt;/code&gt; with the path to your flash drive.&lt;/p&gt;
+
+&lt;p&gt;“but wait”, you say, “what the hell is going on here?”&lt;/p&gt;
+
+&lt;p&gt;great question. let’s take a closer look.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;god of the terminal. short for “superuser do”, it runs the following command as an administrator, so you can do &lt;em&gt;fun&lt;/em&gt; stuff like break everything or make a bootable usb. we’ll do the latter. when you run sudo for the first time you’ll be prompted for your password.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dd&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;some ibm sorcery, apparantly. without getting too bogged down with this proprietary witchcraft, &lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt; is a lot like &lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;, an easier-to-swallow terminal command that &lt;strong&gt;c&lt;/strong&gt;o&lt;strong&gt;p&lt;/strong&gt;ies a file from one location to another.&lt;/p&gt;
+
+&lt;p&gt;note that all of the bits that follow dd are its arguments or parameters. please excuse the jargon, they’re the pieces of information that dd needs to know what to copy and where to copy it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;specifies the amount of data we will write at a time. it means, “block size equals 4 megabytes”. so we will write &lt;strong&gt;4&lt;/strong&gt; &lt;strong&gt;M&lt;/strong&gt;egabytes of data at some interval. it doesn’t really matter what that interval is, we just want a damn live usb.&lt;/p&gt;
+
+&lt;h3 id=&quot;attention-macos-users&quot;&gt;attention macOS users!&lt;/h3&gt;
+
+&lt;p&gt;instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;bs=4M&lt;/code&gt; make the M lowercase: &lt;code class=&quot;highlighter-rouge&quot;&gt;bs=4m&lt;/code&gt;. why? it’s not the computers that suck, it’s the people who make them.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;path/to/input.iso&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt; means “input file”! it took me forever to figure that out because of all the if-statement torture i’m conditioned to. &lt;code class=&quot;highlighter-rouge&quot;&gt;path/to/input.iso&lt;/code&gt; is the path to your linux .iso. further explanation is out of the scope of this post.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sd&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;of&lt;/code&gt; means “output file”, duh. this is the part where your computer explodes. no, really. the path to your target usb goes here. replace with the drive letter. triple-check it, then quadruple-check it. that being said, failure is learning. again, identifying that drive letter is out of the scope of this post.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;conv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;fdatasync&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;“conversion equals file data sync”. this is where the magic’s at. what is file data sync? the man page (manual) says, “physically write output file data before finishing”. &lt;a href=&quot;https://href.li/?https://unix.stackexchange.com/questions/312687/why-is-sync-so-important-when-making-a-bootable-linux-usb-stick&quot;&gt;this stackexchange thread&lt;/a&gt; explains that “sync” ensures the data is fully copied. again, out of scope, and who cares about that nerd stuff?! we’re practically done!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;progress&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;finally something that makes sense. this piece ensures we see some feedback in the terminal while the .iso copies to the usb. it’ll show a cute lil’ progress bar to reassure impatient users like ourselves.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;CONCLUSION&lt;/h2&gt;
+
+&lt;p&gt;we just broke down every piece of the following command.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo dd &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4M &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;path/to/input.iso &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/sd &lt;span class=&quot;nv&quot;&gt;conv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;fdatasync &lt;span class=&quot;nv&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;progress&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;now fill out your paths and burn those usbs to the ground.&lt;/p&gt;
+
+&lt;p&gt;the terminal is way faster, cooler, and more dangerous than uNetBootin and Etcher. cool grandmas dd.&lt;/p&gt;</content><author><name></name></author><summary type="html">Make a bootable USB with dd on Linux and macOS</summary></entry></feed>

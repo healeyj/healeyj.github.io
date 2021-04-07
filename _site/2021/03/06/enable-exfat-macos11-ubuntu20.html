@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self'; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; media-src 'self'; object-src 'self'; child-src 'self'; form-action 'none'; base-uri 'self'" />
+<meta http-equiv="X-XSS-Protection"  content="1;mode=block" always>
+<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Enable exFAT on macOS 11.2 and Ubuntu 20.04</title><!-- Begin Jekyll SEO tag v2.7.1 -->
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Enable exFAT on macOS 11.2 and Ubuntu 20.04" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Enable exFAT on macOS 11.2 and Ubuntu 20.04" />
+<meta property="og:description" content="Enable exFAT on macOS 11.2 and Ubuntu 20.04" />
+<link rel="canonical" href="http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html" />
+<meta property="og:url" content="http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html" />
+<meta property="og:site_name" content="healeyj.github.io" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-06T12:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enable exFAT on macOS 11.2 and Ubuntu 20.04" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html","headline":"Enable exFAT on macOS 11.2 and Ubuntu 20.04","dateModified":"2021-03-06T12:00:00+00:00","datePublished":"2021-03-06T12:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2021/03/06/enable-exfat-macos11-ubuntu20.html"},"description":"Enable exFAT on macOS 11.2 and Ubuntu 20.04","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" type="text/css" href="/assets/main-dark.css"></head>
+<body>
+    <div class="container"><header>
+  <div class="menu">
+    <ul><li><a href="/">/home</a></li><li><a href="/portfolio">/portfolio</a></li></ul>
+  </div>
+</header>
+<main>
+      <h1 id="enable-exfat-on-macos-112-and-ubuntu-2004">Enable exFAT on macOS 11.2 and Ubuntu 20.04</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this tutorial we will set up enable exFAT compatibility on macOS 11.2 and Ubuntu 20.04.</p>
+
+<p>There are 2 advantages of the <a href="https://en.wikipedia.org/wiki/ExFAT">exFAT</a> (Extensible File Allocation Table) filesystem: (1) it allows storage of files greater than four gigabytes, and (2) it is compatible across Windows, macOS, and Linux. If you want to move large files to and from all of these operating systems, exFAT is a solution.</p>
+
+<p>Unfortunately, neither macOS 11.2 nor Ubuntu 20.04 include exFAT compatibility by default. We will install the necessary tools manually.</p>
+
+<p>Note: Windows 10 supports exFAT by default, probably because Microsoft created the filesystem.</p>
+
+<hr />
+
+<h2 id="macos-112---enable-exfat-compatibility">macOS 11.2 - enable exFAT compatibility</h2>
+
+<p>We’ll use <a href="https://osxfuse.github.io/">osx-fuse</a> to enable exFAT compatibility with macOS Big Sur.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">```</span>
+<span class="nb">sudo </span>brew update
+<span class="nb">sudo </span>brew upgrade
+<span class="nb">sudo </span>brew <span class="nb">install </span>osx-fuse
+<span class="sb">```</span></code></pre></figure>
+
+<p>To finish the installation, you will need to restart your computer.</p>
+
+<hr />
+
+<h2 id="ubuntu-2004---enable-exfat-compatibility">Ubuntu 20.04 - enable exFAT compatibility</h2>
+
+<p>We’ll use exfat-utils to enable exFAT compatibility in Ubuntu Focal Fossa.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="sb">```</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt upgrade
+<span class="nb">sudo </span>apt <span class="nb">install </span>exfat-utils
+<span class="sb">```</span></code></pre></figure>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>That’s it. We set up <code class="highlighter-rouge">osx-fuse</code> and <code class="highlighter-rouge">exfat-utils</code> on macOS and Ubuntu respectively. Now we can create exFAT filesystems that will accomodate large files across operating systems.</p>
+
+<h3 id="sources--additional-reading">Sources / Additional Reading</h3>
+
+<ul>
+  <li>
+    <p><a href="http://tech.saigonist.com/b/osx/using-exfat-mac-osx.html">Using exFAT on OSX</a> by Tomo Saigon, 2016</p>
+  </li>
+  <li>
+    <p><a href="https://linuxhint.com/exfat_compatibility_ubuntu/">exFAT Compatibility in Ubuntu</a> by Ranvir Singh, 2019</p>
+  </li>
+  <li>
+    <p><a href="https://itsfoss.com/format-exfat-linux/">How to Format a USB Disk as exFAT on Linux</a> by Dimitrios, 2020</p>
+  </li>
+</ul>
+
+
+
+    </main><footer>
+  connect with me on <a href="https://www.linkedin.com/in/healey-joseph/">LinkedIn</a>
+</footer>
+</div>
+  </body>
+</html>
