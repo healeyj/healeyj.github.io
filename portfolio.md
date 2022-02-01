@@ -5,7 +5,7 @@ permalink: /portfolio
 ---
 
 # Tenue wardrobe manager
-Tenue is a command-line tool. It runs on Python and SQL.
+Tenue is a command-line tool. It runs on Python and SQLite.
 
 ```
    ==jgs==!====!=====!=====!====!===!===!=====!===!===!====
