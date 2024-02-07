@@ -5,6 +5,6 @@ permalink: /
 ---
 
 # Hi, I'm Healey!
-... a full-stack data and cloud engineer with a passion for continuous learning. I exceed stakeholders' expectations by building consensus around clear technical requirements.\
-For recruiting inquiries, connect with me on [LinkedIn](https://www.linkedin.com/in/healey-joseph/).\
+... a software developer with a love for continuous learning. I exceed expectations by eliciting clear technical requirements.\
+For my portfolio, click [here](https://healeyj.github.io/portfolio)\
 Welcome to my blog.
