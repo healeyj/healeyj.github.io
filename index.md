@@ -4,6 +4,8 @@ layout: home
 permalink: /
 ---
 
+<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
 # Hi, I'm Healey!
 ... a software developer with a love for continuous learning. I exceed expectations by eliciting clear technical requirements.\
 Welcome to my blog.\
