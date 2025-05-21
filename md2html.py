@@ -3,10 +3,10 @@ import jinja2
 import os
 from datetime import date, datetime
 
-default_title = 'Olivier Bourgeois: Cloud and backend software developer'
-default_description = 'Cloud and backend software developer based in Canada. Specializes in Golang, Kubernetes, and fostering delightful developer experiences.'
-author = 'Olivier Bourgeois'
-domain = 'https://olivi-eh.dev/'
+default_title = 'Healey J: Data Engineer'
+default_description = 'I exceed expectations by eliciting clear requirements.'
+author = 'Healey J'
+domain = 'https://healeyj.com/'
 md = markdown.Markdown(extensions=['meta', 'extra', 'smarty', 'admonition'])
 j2env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 

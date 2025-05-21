@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://olivi-eh.dev/sitemap.xml
+Sitemap: https://healeyj.com/sitemap.xml

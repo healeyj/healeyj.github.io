@@ -1,6 +1,8 @@
 # Personal website
 
-This repository contains my personal website, which is hosted on [olivi-eh.dev](https://olivi-eh.dev/).
+This repository contains my personal website, which is hosted on [healeyj.com](https://healeyj.com/).
+
+The template was created by Olivier Bourgeois, which is available on [GitHub](https://github.com/bourgeoisor/bourgeoisor.github.io).
 
 ## How to run
 
