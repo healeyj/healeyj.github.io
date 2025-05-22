@@ -3,8 +3,8 @@ import jinja2
 import os
 from datetime import date, datetime
 
-default_title = 'Healey J: Data Engineer'
-default_description = 'I exceed expectations by eliciting clear requirements.'
+default_title = 'Healey J'
+default_description = 'Software developer'
 author = 'Healey J'
 domain = 'https://healeyj.com/'
 md = markdown.Markdown(extensions=['meta', 'extra', 'smarty', 'admonition'])

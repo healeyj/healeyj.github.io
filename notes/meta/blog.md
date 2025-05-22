@@ -1,16 +1,14 @@
 title: Blog
-description: Complete archive of blog posts I've written.
-modified: 2024-12-21
+description: All my blog posts
+modified: 2025-05-21
 template: blog-index
 ---
 
 ## <i class="fa-duotone fa-light fa-newspaper me-1"></i>Blog
 
-Here you'll find a complete list of my writings, in reverse chronological order.
-I do not claim to represent any corporation or organization. Views are all my own.
-See something incorrect, or that you'd like to talk about? [Let me know](/contact/)!
+Welcome to my blog. Opinions are my own. Want to talk? [Let me know](/contact/)!
 
-### Writings
+### Posts
 
 Subscribe to the [RSS feed](/rss.xml){:target="_blank"} or [Atom feed](/atom.xml){:target="_blank"}
 to be notified of new posts.
