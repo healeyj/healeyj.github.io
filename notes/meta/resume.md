@@ -61,17 +61,15 @@ You can [find me on LinkedIn](https://www.linkedin.com/in/healey-joseph/){:targe
       </div>
     </div>
     <div class="resume-card-content">
-      <pre> 
-      ==jgs==!====!=====!=====!====!===!===!=====!===!===!====
-                  /`\__/`\   /`\   /`\  |~| |~|  /)=I=(\  /`"""`\
-                 |        | |   `"`   | | | | |  |  :  | |   :   |
-                 '-|    |-' '-|     |-' )/\ )/\  |  T  \ '-| : |-'
-                   |    |     |     |  / \// \/  (  |\  |  '---'
-                   '.__.'     '.___.'  \_/ \_/   |  |/  /
-                                                 |  /  /
-                                                 |  \ /
-                                                 '--'`
-      </pre>
+      <pre>  ==!====!=jgs=!===!==
+   /`\__/`\   /)=I=(\  
+  |        |  |  :  |  
+  '-|    |-'  |  T  \ 
+    |    |    (  |\  | 
+    '.__.'    |  |/  /
+              |  /  /
+              |  \ /
+              '--'`</pre>
       <ul>
         <li>Catalog your clothes.</li>
         <li>Modify outfits in seconds.</li>
