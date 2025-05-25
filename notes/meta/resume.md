@@ -4,7 +4,7 @@ modified: 2025-05-21
 
 <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-## <i class="fa-duotone fa-light fa-memo-circle-info me-1"></i>Resume
+## <i class="fa-duotone fa-light fa-file me-1"></i>Resume
 
 You can [find me on LinkedIn](https://www.linkedin.com/in/healey-joseph/){:target="_blank"}.
 
@@ -23,7 +23,7 @@ You can [find me on LinkedIn](https://www.linkedin.com/in/healey-joseph/){:targe
     <div class="resume-card-content">
       <ul>
         <li>Sped up a clinic research database pipeline 5x with Python and SQL automation scripts.</li>
-        <li>Developed financial data pipelines in Oracle SQL for critical business operations</li>
+        <li>Developed data pipelines in Oracle SQL to support financial operations.</li>
         <li>Reverse-engineered legacy code and migrated it to Oracle SQL.</li>
       </ul>
     </div>
@@ -41,8 +41,8 @@ You can [find me on LinkedIn](https://www.linkedin.com/in/healey-joseph/){:targe
     <div class="resume-card-content">
       <ul>
         <li>Sped up product time-to-value by 3 days with automated data validation in Python and SQL.</li>
-        <li>Automated cloud database backups and implemented disaster recovery strategy with Amazon Web Services (AWS)</li>
-        <li>Built web application features with Angular Javascript and Java, fixed production bugs, documented code, and diagrammed workflows.</li>
+        <li>Automated cloud database backups and implemented disaster recovery strategy with Amazon Web Services (AWS).</li>
+        <li>Built web application features with Java and Javascript, fixed production bugs, documented code, and diagrammed workflows.</li>
       </ul>
     </div>
   </div>
@@ -57,7 +57,7 @@ You can [find me on LinkedIn](https://www.linkedin.com/in/healey-joseph/){:targe
       <div>
         <b>Creator</b> of <b>Tenue Wardrobe Manager</b><br>
         <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-calendar me-1 color-green"></i>2020</span>
-        <span class="me-2 no-wrap"><i class="fa-brands fa-github me-1"></i><a href="https://github.com/healeyj/tenue" target="_blank">Source</a></span>
+        <span class="me-2 no-wrap"><i class="fa-brands fa-github me-1"></i><a href="https://github.com/healeyj/tenue" target="_blank">Source Code</a></span>
       </div>
     </div>
     <div class="resume-card-content">

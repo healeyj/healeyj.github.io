@@ -9,8 +9,6 @@ length: 10
 related: 
 ---
 
-# Enable exFAT on macOS 11.2 and Ubuntu 20.04
-
 ## Introduction
 
 In this tutorial we will set up enable exFAT compatibility on macOS 11.2 and Ubuntu 20.04.
@@ -27,13 +25,11 @@ Note: Windows 10 supports exFAT by default, probably because Microsoft created t
 
 We'll use [osx-fuse](https://osxfuse.github.io/) to enable exFAT compatibility with macOS Big Sur.
 
-{% highlight shell %}
 ```
 sudo brew update
 sudo brew upgrade
 sudo brew install osx-fuse
 ```
-{% endhighlight %}
 
 To finish the installation, you will need to restart your computer.
 
@@ -43,13 +39,11 @@ To finish the installation, you will need to restart your computer.
 
 We'll use exfat-utils to enable exFAT compatibility in Ubuntu Focal Fossa.
 
-{% highlight shell %}
 ```
 sudo apt update
 sudo apt upgrade
 sudo apt install exfat-utils
 ```
-{% endhighlight %}
 
 ---
 

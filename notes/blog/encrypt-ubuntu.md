@@ -75,9 +75,7 @@ You'll need to set a new password for this LUKS partition. Again, this is distin
 
 For recap, we've now set up three (3) distinct passwords, one for the encrypted primary drive, one for your user account, and one for the LUKS-encrypted partition on the secondary drive.
 
-{% highlight shell %}
 `sudo cryptsetup -y -v luksFormat /dev/sd?X`
-{% endhighlight %}
 
 ---
 
@@ -89,12 +87,10 @@ Note that `cryptsetup` is an interface to mount this encrypted partition with a 
 
 Briefly, the mapper affords us the luxury of encryption.
 
-{% highlight shell %}
 ```
 sudo cryptsetup luksOpen /dev/sd?X sd?X_crypt
 sudo mkfs.ext4 /dev/mapper/sd?X_crypt
 ```
-{% endhighlight %}
 
 ---
 
@@ -108,13 +104,11 @@ Then coming back to the wonderful `cryptsetup`, we'll use `luksAddKey` to link o
 
 Note that this keyfile is distinct from the three (3) passwords we are working with.
 
-{% highlight shell %}
 ```
 sudo dd if=/dev/urandom of=/root/.keyfile bs=1024 count=4
 sudo chmod 0400 /root/.keyfile
 sudo cryptsetup luksAddKey /dev/sd?X /root/.keyfile
 ```
-{% endhighlight %}
 
 ---
 
@@ -124,17 +118,13 @@ What does `blkid` mean though? A quick Stack Exchange search shows ("Block (devi
 
 Essentially, block devices make it easy for users like us to work with filesystems and do fun stuff like encrypt them and link them across drives.
 
-{% highlight shell %}
 `sudo blkid`
-{% endhighlight %}
 
 ---
 
 With our target UUID copied to the clipboard, open up `/etc/crypttab` with a text editor of choice. Nano, vim, emacs, or a GUI text editor will work.
 
-{% highlight shell %}
 `sudo nano /etc/crypttab`
-{% endhighlight %}
 
 Copy and paste the following line to the last line of the text file:
 
@@ -156,12 +146,10 @@ First, create a new temporary directory at `/mnt/tmp`, then mount `/dev/mapper/s
 
 If there's ever doubt as to what a certain command does, use `whatis` (thanks again to [that stackexchange post on blkid](https://unix.stackexchange.com/questions/212866/what-does-blkid-stand-for)) For example, try running `whatis mkdir` in the terminal.
 
-{% highlight shell %}
 ```
 sudo mkdir /mnt/tmp
 sudo mount /dev/mapper/sd?X_crypt /mnt/tmp
 ```
-{% endhighlight %}
 
 ---
 
@@ -169,17 +157,13 @@ Next, we'll use `rsync` to copy our `/home` folder and all its contents to our n
 
 The `rsync` command is an improvement on `rcp`, remote copy, which functions about the same as `cp`, which simply copies. We need a *remote* copy command because we're working across drives.
 
-{% highlight shell %}
 `sudo rsync -avx /home/ /mnt/tmp`
-{% endhighlight %}
 
 ---
 
 Let's mount our `/home` folder onto our unlocked secondary partition.
 
-{% highlight shell %}
 `sudo mount /dev/mapper/sd?X_crypt /home`
-{% endhighlight %}
 
 ---
 
@@ -187,15 +171,11 @@ Almost done.
 
 Open up `/etc/fstab` with a text editor:
 
-{% highlight shell %}
 `sudo nano /etc/fstab`
-{% endhighlight %}
 
 Now copy and paste the following line to the end of the text file:
 
-{% highlight shell %}
 `/dev/mapper/sd?X_crypt /home ext4 defaults 0 2`
-{% endhighlight %}
 
 What is `fstab`?
 

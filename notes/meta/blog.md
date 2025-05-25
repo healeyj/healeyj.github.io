@@ -6,9 +6,5 @@ template: blog-index
 
 ## <i class="fa-duotone fa-light fa-newspaper me-1"></i>Blog
 
-Welcome to my blog. Opinions are my own. Want to talk? [Let me know](/contact/)!
-
-### Posts
-
 Subscribe to the [RSS feed](/rss.xml){:target="_blank"} or [Atom feed](/atom.xml){:target="_blank"}
 to be notified of new posts.
