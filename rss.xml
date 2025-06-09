@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Healey J</title>
+    <link>https://healeyj.com/</link>
+    <description>Software developer</description>
+    <language>en-us</language>
+    <docs>https://www.rssboard.org/rss-specification</docs>
+    <atom:link href="https://healeyj.com/rss.xml" rel="self" type="application/rss+xml" />
+    <ttl>60</ttl>
+    <item>
+      <title>Enable exFAT on macOS 11.2 and Ubuntu 20.04</title>
+      <link>https://healeyj.com/enable-exfat-macos11-ubuntu20/</link>
+      <description>In this tutorial we will set up enable exFAT compatibility on macOS 11.2 and Ubuntu 20.04.</description>
+      <pubDate>Sat, 06 Mar 2021 00:00:00 EST</pubDate>
+      <guid>https://healeyj.com/enable-exfat-macos11-ubuntu20/</guid>
+    </item>
+    <item>
+      <title>Make a bootable USB with dd on Linux and macOS</title>
+      <link>https://healeyj.com/bootable-usb-with-dd/</link>
+      <description>you've probably used uNetBootin, Etcher, and Rufus a dozen times to make a bootable usb drive. your grandma loves those apps.</description>
+      <pubDate>Thu, 25 Feb 2021 00:00:00 EST</pubDate>
+      <guid>https://healeyj.com/bootable-usb-with-dd/</guid>
+    </item>
+    <item>
+      <title>Encrypt Ubuntu Across Two Disks (SSD and HDD)</title>
+      <link>https://healeyj.com/encrypt-ubuntu/</link>
+      <description>In this tutorial, we'll setup an encrypted install of Ubuntu 20.04 LTS across two disks.</description>
+      <pubDate>Thu, 25 Feb 2021 00:00:00 EST</pubDate>
+      <guid>https://healeyj.com/encrypt-ubuntu/</guid>
+    </item>
+  </channel>
+</rss>
