@@ -27,3 +27,5 @@ python3 -m http.server -d out/ 8080
 And browse to `http://localhost:8080/`.
 
 ## How to deploy to Github pages
+
+Use GitHub Actions?
