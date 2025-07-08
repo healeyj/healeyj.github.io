@@ -29,5 +29,6 @@ And browse to `http://localhost:8080/`.
 ## TODO: How to deploy to Github pages 
 
 - Create branch called gh-pages
-- Repository -> Settings -> Pages -> Source -> Github Actions or Deploy From A Branch?
+- Repository -> Settings -> Pages -> Source -> Github Actions or Deploy From A Branch
+- Ensure GITHUB_TOKEN is in gh-pages-deploy.yaml
 
