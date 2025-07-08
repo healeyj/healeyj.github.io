@@ -1,0 +1,32 @@
+{% include "_prefix.html" %}
+<main>
+  <div id="main-header">
+    <p><a href="/blog/">Blog</a> / <b>{{ title_raw }}</b></p>
+
+    <!--<p>{{ description }}</p>-->
+    
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-calendar-lines-pen color-red"></i>
+      {{ published_formatted }}
+    </span>
+
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-clock color-purple"></i>
+      {{ length }} min read
+    </span>
+
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-tags color-blue"></i>
+    {% for tag in tags %}
+      #{{ tag }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+    </span>
+  </div>
+
+  <div id="main-content">
+    <h2>{{ title_raw }}</h2>
+    {{ md_html }}
+  </div>
+
+  <div id="main-footer">
+    <span><a href="/blog/">All posts</a></span>
+  </div>
+</main>
+{% include "_suffix.html" %}
