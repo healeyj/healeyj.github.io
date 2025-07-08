@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <!-- REMOVED Google tag (gtag.js)
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0546BJCVFH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0546BJCVFH');
+    </script>
+     -->
+
+    <title>Make a bootable USB with dd on Linux and macOS - Healey J</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Healey J Cox-McMahon">
+    <meta name="language" content="English">
+    <meta name="title" content="Make a bootable USB with dd on Linux and macOS">
+    <meta name="description" content="you've probably used uNetBootin, Etcher, and Rufus a dozen times to make a bootable usb drive. your grandma loves those apps.">
+    <meta name="keywords" content="software,engineer,developer,data,sql,python,aws,cloud,development,java,security,software,consulting">
+    <meta name="robots" content="index, follow">
+
+    <!--
+    <meta property="og:site_name" content="Healey J: Data Engineer">
+    <meta property="og:title" content="Make a bootable USB with dd on Linux and macOS">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://healeyj.com/bootable-usb-with-dd/">
+    <meta property="og:image" content="http://healeyj.com/static/assets/og-default.png">
+    <meta property="og:description" content="you've probably used uNetBootin, Etcher, and Rufus a dozen times to make a bootable usb drive. your grandma loves those apps.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="healeyj.com">
+    <meta property="twitter:url" content="https://healeyj.com/bootable-usb-with-dd/">
+    <meta name="twitter:title" content="Make a bootable USB with dd on Linux and macOS">
+    <meta name="twitter:description" content="you've probably used uNetBootin, Etcher, and Rufus a dozen times to make a bootable usb drive. your grandma loves those apps.">
+    <meta name="twitter:image" content="http://healeyj.com/static/assets/og-default.png">
+    -->
+
+    <link rel="canonical" href="https://healeyj.com/bootable-usb-with-dd/">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=4">
+    <link rel="stylesheet" href="/static/fonts/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/css/duotone-light.min.css">
+    <link rel="stylesheet" href="/static/fonts/css/regular.min.css">
+    <link rel="stylesheet" href="/static/fonts/css/brands.min.css">
+    <link rel='stylesheet' href="/static/style.css">
+  </head>
+  <body>
+    <header>
+      <!--<a href="/">
+        <img src="/static/assets/profile.jpg" alt="Healey J" id="header-image" class="d-sm-none" width="88" height="88">
+      </a>-->
+      <div id="header-card">
+        <h1>Healey J</h1>
+        <p>Software developer</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">
+            <i class="fa-regular fa-house"></i><span class="d-md-none ms-1">Home</span>
+          </a></li>
+          <li><a href="/blog/">
+            <i class="fa-regular fa-newspaper"></i><span class="d-md-none ms-1">Blog</span></span>
+          </a></li>
+          <!--
+          <li><a href="/resume/">
+            <i class="fa-regular fa-file"></i><span class="d-md-none ms-1">Resume</span></span>
+          </a></li>
+          -->
+          <li><a href="/contact/">
+            <i class="fa-regular fa-envelope"></i><span class="d-md-none ms-1">Contact</span></span>
+          </a></li>
+        </ul>
+        <ul class="d-xs-none">
+          <li><a href="https://github.com/healeyj" target="_blank" aria-label="Link to my GitHub profile">
+            <i class="fa-brands fa-github"></i>
+          </a></li>
+          <li><a href="https://www.linkedin.com/in/healey-joseph/" target="_blank" aria-label="Link to my LinkedIn profile">
+            <i class="fa-brands fa-linkedin"></i>
+          </a></li>
+        </ul>
+      </nav>
+    </header>
+<main>
+  <div id="main-header">
+    <p><a href="/blog/">Blog</a> / <b>Make a bootable USB with dd on Linux and macOS</b></p>
+
+    <!--<p>you've probably used uNetBootin, Etcher, and Rufus a dozen times to make a bootable usb drive. your grandma loves those apps.</p>-->
+    
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-calendar-lines-pen color-red"></i>
+      February 25, 2021
+    </span>
+
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-clock color-purple"></i>
+      5 min read
+    </span>
+
+    <span class="me-2 no-wrap"><i class="fa-duotone fa-light fa-tags color-blue"></i>
+    
+      #linux, 
+    
+      #macos
+    
+    </span>
+  </div>
+
+  <div id="main-content">
+    <h2>Make a bootable USB with dd on Linux and macOS</h2>
+    <h2>INTRODUCTION</h2>
+<p>you&rsquo;ve probably used <a href="https://href.li/?https://unetbootin.org">uNetBootin</a>, <a href="https://href.li/?https://www.balena.io/etcher/">Etcher</a>, and <a href="https://rufus.ie/">Rufus</a> a dozen times to make a bootable usb drive.</p>
+<p>your grandma loves those apps. they do all the work for you. but they&rsquo;re boring and you live dangerously.</p>
+<p>enter the terminal. what could possibly go wrong? well, total corruption of the usb stick and/or your computer&rsquo;s operating system. don&rsquo;t worry though, a little caution goes a long way.</p>
+<p>credit where it&rsquo;s due: this post is an expansion of <a href="https://href.li/?https://askubuntu.com/questions/372607/how-to-create-bootable-ubuntu-usb-flash-drive-from-terminal">this askubuntu thread</a>.</p>
+<p>i&rsquo;ll explain step-by-step how the dd terminal command referenced in the link above works. if you&rsquo;re on macOS there is a small variation that i will reiterate. note that this won&rsquo;t work on windows.</p>
+<hr />
+<h2>make a bootable usb in the terminal with dd</h2>
+<p><code>sudo dd bs=4M if=path/to/input.iso of=/dev/sd conv=fdatasync status=progress</code></p>
+<p>to run this commmand, you would replace <code>path/to/input.iso</code> with the path to your linux .iso, and <code>/dev/sd&gt;</code> with the path to your flash drive.</p>
+<p>&ldquo;but wait&rdquo;, you say, &ldquo;what the hell is going on here?&rdquo;</p>
+<p>great question. let&rsquo;s take a closer look.</p>
+<hr />
+<p><code>sudo</code></p>
+<p>god of the terminal. short for &ldquo;superuser do&rdquo;, it runs the following command as an administrator, so you can do <em>fun</em> stuff like break everything or make a bootable usb. we&rsquo;ll do the latter. when you run sudo for the first time you&rsquo;ll be prompted for your password.</p>
+<hr />
+<p><code>dd</code></p>
+<p>some ibm sorcery, apparantly. without getting too bogged down with this proprietary witchcraft, <code>dd</code> is a lot like <code>cp</code>, an easier-to-swallow terminal command that <strong>c</strong>o<strong>p</strong>ies a file from one location to another.</p>
+<p>note that all of the bits that follow dd are its arguments or parameters. please excuse the jargon, they&rsquo;re the pieces of information that dd needs to know what to copy and where to copy it.</p>
+<hr />
+<p><code>bs=4M</code></p>
+<p>specifies the amount of data we will write at a time. it means, &ldquo;block size equals 4 megabytes&rdquo;. so we will write <strong>4</strong> <strong>M</strong>egabytes of data at some interval. it doesn&rsquo;t really matter what that interval is, we just want a damn live usb.</p>
+<h3>attention macOS users!</h3>
+<p>instead of <code>bs=4M</code> make the M lowercase: <code>bs=4m</code>. why? it&rsquo;s not the computers that suck, it&rsquo;s the people who make them.</p>
+<hr />
+<p><code>if=path/to/input.iso</code></p>
+<p><code>if</code> means &ldquo;input file&rdquo;! it took me forever to figure that out because of all the if-statement torture i&rsquo;m conditioned to. <code>path/to/input.iso</code> is the path to your linux .iso. further explanation is out of the scope of this post.</p>
+<hr />
+<p><code>of=/dev/sd</code></p>
+<p><code>of</code> means &ldquo;output file&rdquo;, duh. this is the part where your computer explodes. no, really. the path to your target usb goes here. replace with the drive letter. triple-check it, then quadruple-check it. that being said, failure is learning. again, identifying that drive letter is out of the scope of this post.</p>
+<hr />
+<p><code>conv=fdatasync</code></p>
+<p>&ldquo;conversion equals file data sync&rdquo;. this is where the magic&rsquo;s at. what is file data sync? the man page (manual) says, &ldquo;physically write output file data before finishing&rdquo;. <a href="https://href.li/?https://unix.stackexchange.com/questions/312687/why-is-sync-so-important-when-making-a-bootable-linux-usb-stick">this stackexchange thread</a> explains that &ldquo;sync&rdquo; ensures the data is fully copied. again, out of scope, and who cares about that nerd stuff?! we&rsquo;re practically done!</p>
+<hr />
+<p><code>status=progress</code></p>
+<p>finally something that makes sense. this piece ensures we see some feedback in the terminal while the .iso copies to the usb. it&rsquo;ll show a cute lil&rsquo; progress bar to reassure impatient users like ourselves.</p>
+<hr />
+<h2>CONCLUSION</h2>
+<p>we just broke down every piece of the following command.</p>
+<p><code>sudo dd bs=4M if=path/to/input.iso of=/dev/sd conv=fdatasync status=progress</code></p>
+<p>now fill out your paths and burn those usbs to the ground.</p>
+<p>the terminal is way faster, cooler, and more dangerous than uNetBootin and Etcher. cool grandmas dd.</p>
+  </div>
+
+  <div id="main-footer">
+    <span><a href="/blog/">All posts</a></span>
+  </div>
+</main>
+  <footer>
+    <div class="text-small">
+      Page last modified on <span style="white-space: nowrap">February 25, 2021</span>.
+    </div>
+  </footer>
+</body>
+</html>
