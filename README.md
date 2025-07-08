@@ -26,6 +26,8 @@ python3 -m http.server -d out/ 8080
 
 And browse to `http://localhost:8080/`.
 
-## How to deploy to Github pages
+## TODO: How to deploy to Github pages 
 
-Use GitHub Actions?
+- Create branch called gh-pages
+- Repository -> Settings -> Pages -> Source -> Github Actions or Deploy From A Branch?
+
