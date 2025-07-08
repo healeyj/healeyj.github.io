@@ -1,6 +1,6 @@
 # Personal website
 
-This repository contains my personal website, which is hosted on [healeyj.com](https://healeyj.com/).
+This repository contains my personal website, which is hosted on [healeyj.com](https://healeyj.com/). 
 
 The template was created by Olivier Bourgeois, which is available on [GitHub](https://github.com/bourgeoisor/bourgeoisor.github.io).
 
@@ -25,3 +25,5 @@ python3 -m http.server -d out/ 8080
 ```
 
 And browse to `http://localhost:8080/`.
+
+## How to deploy to Github pages
